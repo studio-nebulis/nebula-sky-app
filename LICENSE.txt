@@ -1,0 +1,9 @@
+Nebula Sky
+Copyright (c) 2026 Studio Nébulis. Tous droits réservés. All rights reserved.
+
+Le code de Nebula Sky, ses textes, ses figures et son interface ne peuvent être copiés, modifiés ni
+redistribués sans l'accord écrit de Studio Nébulis (studio.nebulis@gmail.com).
+
+Les éléments de tiers gardent leur propre licence, listée dans licences.html (bibliothèques et
+données) et dans les Réglages de l'appli, rubrique Crédits (photos). En particulier, les fichiers
+data/stars3d.json (base HYG v4.1) et data/sky_cn.json (Stellarium) restent sous CC BY-SA.

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; connect-src 'self' https://api.open-meteo.com https://celestrak.org https://www.minorplanetcenter.net https://mars.nasa.gov https://science.nasa.gov https://www.eso.org https://esahubble.org https://esawebb.org https://noirlab.edu; media-src 'self' blob:; worker-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#05070d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="./icon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Nebula Sky" />
+  <meta name="application-name" content="Nebula Sky" />
+  <title>Nebula Sky</title>
+  <script type="module" crossorigin src="./assets/index-CpTtazwi.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-D-5V8M4u.css">
+</head>
+<body>
+  <div id="app">
+    <section id="view-home" class="view page active"></section>
+    <section id="view-sky" class="view">
+      <video id="cam" playsinline muted autoplay hidden></video>
+      <canvas id="mw-gl"></canvas>
+      <canvas id="sky"></canvas>
+      <header class="sky-top">
+        <div id="mode-badge" class="badge"></div>
+        <div class="top-actions">
+          <button id="btn-freeze" class="icon-btn" aria-label="Figer" hidden>
+            <svg viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg>
+          </button>
+          <button id="btn-earth" class="icon-btn" aria-label="Terre">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
+          </button>
+          <button id="btn-night" class="icon-btn" aria-label="Mode nuit">
+            <svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+          </button>
+          <button id="btn-settings" class="icon-btn" aria-label="Réglages">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </button>
+        </div>
+      </header>
+      <div id="reticle" hidden></div>
+      <div id="guide-banner" class="banner" hidden></div>
+      <div id="sel-card" class="card" hidden></div>
+      <div id="start-overlay">
+        <div class="start-box">
+          <h1 id="start-title"></h1>
+          <p id="start-body"></p>
+          <button id="btn-start" class="primary"></button>
+          <button id="btn-manual" class="ghost"></button>
+        </div>
+      </div>
+    </section>
+    <section id="view-catalog" class="view page sub"><button class="back-btn" data-back></button><div class="pbody"></div></section>
+    <section id="view-find" class="view page"></section>
+    <section id="view-tonight" class="view page sub"><button class="back-btn" data-back></button><div class="pbody"></div></section>
+    <section id="view-family" class="view page sub"><button class="back-btn" data-back></button><div class="pbody"></div></section>
+    <section id="view-help" class="view page"></section>
+
+    <nav id="tabs">
+      <button data-tab="home" class="active">
+        <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span></span>
+      </button>
+      <button data-tab="sky">
+        <svg viewBox="0 0 24 24"><path d="M12 3l2.3 5.6 6 .5-4.6 3.9 1.4 5.9L12 15.8 6.9 18.9l1.4-5.9L3.7 9.1l6-.5z"/></svg><span></span>
+      </button>
+      <button data-tab="find">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg><span></span>
+      </button>
+      <button data-tab="help">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6"/><circle cx="12" cy="17.2" r=".6"/></svg><span></span>
+      </button>
+    </nav>
+
+    <div id="sheet" hidden></div>
+    <div id="toast" hidden></div>
+  </div>
+  <div id="night-filter"></div>
+</body>
+</html>
