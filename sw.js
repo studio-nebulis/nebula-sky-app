@@ -2,7 +2,7 @@
 // Page d'accueil : réseau d'abord, pour qu'une nouvelle version s'affiche dès son arrivée.
 // Le reste : réponse immédiate depuis le cache, mise à jour en arrière-plan.
 // Changer CACHE à chaque publication : l'ancien cache (vieux fichiers compris) est effacé.
-const CACHE = 'nebulasky-20261120T0240';
+const CACHE = 'nebulasky-20261120T1541';
 
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', (e) => {
